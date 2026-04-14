@@ -96,7 +96,7 @@ const FILLERS = [
 const EMBALLAGE_BOUQUET = [
   { id: "small",  name: "Emballage Small", nameAr: "تغليف صغير",  price: 350, maxFlowers: 4  },
   { id: "medium", name: "Emballage Moyen", nameAr: "تغليف متوسط", price: 450, maxFlowers: 7  },
-  { id: "large",  name: "Emballage Grand", nameAr: "تغليف كبير",  price: 700, maxFlowers: 999},
+  { id: "large",  name: "Emballage Grand", nameAr: "تغليف كبير",  price: 600, maxFlowers: 999},
   { id: "tule_perles", name: "Tule & Perles", nameAr: "تول ولؤلؤ", price: 900, maxFlowers: 999},
 ];
 
@@ -1055,7 +1055,7 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
     }
   }
 
-  if (productType === "box") lines.push({ label: "🎁 Emballage Box Fleurs", price: 2000 });
+  if (productType === "box") lines.push({ label: "🎁 Emballage Box Fleurs", price: 1500 });
   if (productType === "pot") {
     lines.push({ label: "🪴 Emballage Pots", price: 500 });
     if ((config.heartColors || []).length > 0) {

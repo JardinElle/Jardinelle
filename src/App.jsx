@@ -824,16 +824,15 @@ function Step2_Customize({ productType, config, setConfig }) {
         <h2 className="step-title">Votre <em>Lampe</em> 🌸</h2>
         <p className="step-sub">À partir de 3 300 DA · 1 pack de piles offert 🎁</p>
 
-        <div className="lamp-feature">
-          <img src={PERLA_LAMP_IMAGE} alt="Lampe Perla avec fleur blanche et cygne" />
-          <span>Perla · Lampe fleur et cygne</span>
-        </div>
-
         <label className="field-label">Modèle de lampe</label>
         <div className="lamp-grid">
           {LAMP_MODELS.map((m) => (
             <button key={m.id} className={`lamp-card${config.lampModel === m.id ? " selected" : ""}`}
-              onClick={() => setConfig((c) => ({ ...c, lampModel: m.id }))}>
+              onClick={() => setConfig((c) => ({
+                ...c,
+                lampModel: m.id,
+                lampSwan: m.id === "perla",
+              }))}>
               {m.id === "perla"
                 ? <img className="lamp-model-image" src={PERLA_LAMP_IMAGE} alt="Lampe Perla" />
                 : <span className="lamp-emoji">{m.emoji}</span>}
@@ -847,7 +846,9 @@ function Step2_Customize({ productType, config, setConfig }) {
         <label className="field-label" style={{marginTop:18}}>🦢 Option cygne</label>
         <button className={`option-chip${config.lampSwan ? " selected" : ""}`}
           onClick={() => setConfig(c => ({ ...c, lampSwan: !c.lampSwan }))}>
-          {config.lampSwan ? "Retirer le cygne" : "Ajouter un cygne"} · {config.lampModel === "perla" ? "inclus avec Perla" : "+700 DA"}
+          {config.lampModel === "perla"
+            ? (config.lampSwan ? "Retirer le cygne · −700 DA" : "Cygne retiré · prix réduit de 700 DA")
+            : (config.lampSwan ? "Retirer le cygne" : "Ajouter un cygne · +700 DA")}
         </button>
         <p className="info-box">Le cygne ne peut pas être commandé seul.</p>
 

@@ -148,8 +148,9 @@ const LAMP_MODELS = [
   { id: "tulip",     name: "Tulip",           nameAr: "توليب",      price: 3300, emoji: "🌷" },
   { id: "lily_valley", name: "Lily of the Valley", nameAr: "زنبق الوادي", price: 3500, emoji: "🤍" },
   { id: "perla",     name: "Perla",           nameAr: "بيرلا",      price: 4500, emoji: "🦢" },
-  { id: "peony",     name: "Peony",           nameAr: "فاوانيا",    price: 3500, emoji: "🌸" },
-  { id: "peony",     name: "Peony",           nameAr: "فاوانيا",    price: 2800, emoji: "🌸" },
+  { id: "peony",     name: "Peony",           nameAr: "باوني",    price: 3500, emoji: "🌸" },
+  { id: "Lily",     name: "Lily",           nameAr: "ليلي",    price: 2800, emoji: "🌺" },
+  { id: "Lotus",     name: "Lotus",           nameAr: "لوتوس",    price: 3500, emoji: "🪷" },
 ];
 
 // Board configs — renamed as requested

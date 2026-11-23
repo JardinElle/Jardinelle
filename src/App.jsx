@@ -149,6 +149,7 @@ const LAMP_MODELS = [
   { id: "lily_valley", name: "Lily of the Valley", nameAr: "زنبق الوادي", price: 3500, emoji: "🤍" },
   { id: "perla",     name: "Perla",           nameAr: "بيرلا",      price: 4500, emoji: "🦢" },
   { id: "peony",     name: "Peony",           nameAr: "فاوانيا",    price: 3500, emoji: "🌸" },
+  { id: "peony",     name: "Peony",           nameAr: "فاوانيا",    price: 2800, emoji: "🌸" },
 ];
 
 // Board configs — renamed as requested

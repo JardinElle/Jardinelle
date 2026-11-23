@@ -736,7 +736,7 @@ function Step1_ProductType({ onSelect, basket = [], onViewBasket }) {
   const products = [
     { id: "bouquet",  icon: "💐", name: "Bouquet",         nameAr: "باقة زهور",      desc: "Bouquet pipe-cleaner" },
     { id: "box",      icon: "🎁", name: "Flower Box",      nameAr: "صندوق زهور",     desc: "Composition florale en box" },
-    { id: "lamp",     icon: "🪔", name: "Lampe",           nameAr: "مصباح زهري",     desc: "Lampe décorative florale" },
+    { id: "lamp",     icon: "🌸", name: "Lampe",           nameAr: "مصباح زهري",     desc: "Lampe décorative florale" },
     { id: "board",    icon: "🌸", name: "Dancing Flowers", nameAr: "زهور راقصة",     desc: "Tableau décoratif floral" },
   ];
 
@@ -819,7 +819,7 @@ function Step2_Customize({ productType, config, setConfig }) {
     };
     return (
       <div className="step-content">
-        <h2 className="step-title">Votre <em>Lampe</em> 🪔</h2>
+        <h2 className="step-title">Votre <em>Lampe</em> 🌸</h2>
         <p className="step-sub">À partir de 3 300 DA · 1 pack de piles offert 🎁</p>
 
         <label className="field-label">Modèle de lampe</label>
@@ -1102,7 +1102,7 @@ function Step2_Customize({ productType, config, setConfig }) {
         <div className="info-box">🎁 Emballage box inclus — <strong>750 DA</strong></div>
       )}
 
-      {isBouquet && (
+      {(isBouquet || productType === "box") && (
         <>
           <label className="field-label" style={{marginTop:18}}>✍️ Ajouter un prénom ou un nom (+300 DA)</label>
           <input className="field-input" type="text" placeholder="Nom à inscrire (optionnel)"
@@ -1258,7 +1258,7 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
   const productLabels = {
     bouquet:  "Bouquet 💐",
     box:      "Flower Box 🎁",
-    lamp:     "Lampe 🪔",
+    lamp:     "Lampe 🌸",
     board:    "Dancing Flowers 🌸",
   };
 
@@ -1293,7 +1293,7 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
   }
 
   if (productType === "box") lines.push({ label: "🎁 Emballage Box Fleurs", price: 750 });
-  if (productType === "bouquet" && (config.customName || "").trim()) lines.push({ label: `✍️ Nom : ${config.customName.trim()}`, price: 300 });
+  if ((productType === "bouquet" || productType === "box") && (config.customName || "").trim()) lines.push({ label: `✍️ Nom : ${config.customName.trim()}`, price: 300 });
 
   if (productType === "pot") {
     lines.push({ label: "🪴 Emballage Pots", price: 500 });
@@ -1315,7 +1315,7 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
     if (fl && qty > 0) lines.push({ label: `${fl.emoji} ${fl.name} ×${qty}`, price: fl.price * qty });
   });
 
-  if (productType === "bouquet" && (config.customName || "").trim()) lines.push({ label: `✍️ Nom : ${config.customName.trim()}`, price: 300 });
+  if ((productType === "bouquet" || productType === "box") && (config.customName || "").trim()) lines.push({ label: `✍️ Nom : ${config.customName.trim()}`, price: 300 });
   if (productType === "bouquet" && config.emballage) {
     const e = EMBALLAGE_BOUQUET.find(e => e.id === config.emballage);
     if (e) lines.push({ label: `🎀 ${e.name}`, price: e.price });
@@ -1423,7 +1423,7 @@ function buildWhatsAppMessage(productType, config, totalPrice) {
   const productLabels = {
     bouquet:  "Bouquet 💐",
     box:      "Flower Box 🎁",
-    lamp:     "Lampe 🪔",
+    lamp:     "Lampe 🌸",
     board:    "Dancing Flowers 🌸",
   };
 
@@ -1459,7 +1459,7 @@ function buildWhatsAppMessage(productType, config, totalPrice) {
   }
 
   if (productType === "box") lines.push(`🎁 Emballage Box — ${fmtDA(750)}`);
-  if (productType === "bouquet" && (config.customName || "").trim()) lines.push(`✍️ Nom à inscrire : ${config.customName.trim()} — ${fmtDA(300)}`);
+  if ((productType === "bouquet" || productType === "box") && (config.customName || "").trim()) lines.push(`✍️ Nom à inscrire : ${config.customName.trim()} — ${fmtDA(300)}`);
 
   if (productType === "pot") {
     lines.push(`🪴 Emballage Pot — ${fmtDA(500)}`);
@@ -1609,7 +1609,7 @@ function BasketItemDetail({ item }) {
     if (fl) details.push({ text: `${fl.emoji} ${fl.name} ×${qty}` });
   });
 
-  if (productType === "bouquet" && (config.customName || "").trim()) details.push({ text: `✍️ Nom : ${config.customName.trim()} (+300 DA)` });
+  if ((productType === "bouquet" || productType === "box") && (config.customName || "").trim()) details.push({ text: `✍️ Nom : ${config.customName.trim()} (+300 DA)` });
   if (productType === "bouquet" && config.emballage) {
     const e = EMBALLAGE_BOUQUET.find(e => e.id === config.emballage);
     if (e) details.push({ text: `🎀 Emballage : ${e.name} (${fmtPrice(e.price)})` });
@@ -1746,7 +1746,7 @@ export default function App() {
 
     if (pType === "pot") total += 500;
     if (pType === "box") total += 750;
-    if (pType === "bouquet" && (cfg.customName || "").trim()) total += 300;
+    if ((pType === "bouquet" || pType === "box") && (cfg.customName || "").trim()) total += 300;
 
     // flowerVariants: [{flowerID, colorHex, qty}]
     (cfg.flowerVariants || []).forEach(({ flowerID, qty }) => {
@@ -1783,7 +1783,7 @@ export default function App() {
   const STEPS = 4;
 
   const PRODUCT_LABELS = {
-    bouquet:"Bouquet 💐", box:"Flower Box 🎁", lamp:"Lampe 🪔",
+    bouquet:"Bouquet 💐", box:"Flower Box 🎁", lamp:"Lampe 🌸",
     board:"Dancing Flowers 🌸",
   };
 
@@ -2069,7 +2069,7 @@ function buildProductLines(productType, config, totalPrice) {
   }
 
   if (productType === "box") lines.push(`  🎁 Emballage Box — ${fmtDA(750)}`);
-  if (productType === "bouquet" && (config.customName || "").trim()) lines.push(`  ✍️ Nom : ${config.customName.trim()} — ${fmtDA(300)}`);
+  if ((productType === "bouquet" || productType === "box") && (config.customName || "").trim()) lines.push(`  ✍️ Nom : ${config.customName.trim()} — ${fmtDA(300)}`);
 
   if (productType === "pot") {
     lines.push(`  🪴 Emballage Pot — ${fmtDA(500)}`);

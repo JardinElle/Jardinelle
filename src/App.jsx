@@ -106,35 +106,6 @@ const EMBALLAGE_BOUQUET = [
   { id: "tule_perles", name: "Tule & Perles", nameAr: "تول ولؤلؤ", price: 900, maxFlowers: 999},
 ];
 
-// Paper colors
-const PAPER_COLORS = [
-  { id: "kraft",        name: "Kraft",         hex: "#c9a96e" },
-  { id: "white_gloss",  name: "White Gloss",   hex: "#f5f5f5" },
-  { id: "black_gloss",  name: "Black Gloss",   hex: "#1a1a1a" },
-  { id: "black_matt",   name: "Black Matt",    hex: "#2d2d2d" },
-  { id: "pink_clair",   name: "Pink Clair",    hex: "#ffd6e0" },
-  { id: "pink_white",   name: "Pink & White",  hex: "#ffe4ec" },
-  { id: "jaune_banane", name: "Jaune Banane",  hex: "#fff176" },
-  { id: "purple",       name: "Purple",        hex: "#ce93d8" },
-  { id: "rouge",        name: "Rouge",         hex: "#ef9a9a" },
-  { id: "transparent",  name: "Transparent",   hex: "#e8f4f8" },
-  { id: "journal",      name: "Journal Paper", hex: "#f0e6d3" },
-];
-
-// Ribbon colors
-const RIBBON_COLORS = [
-  { id: "creamy",      name: "Crème",       hex: "#fffde7" },
-  { id: "rouge",       name: "Rouge",       hex: "#e53935" },
-  { id: "bordeaux",    name: "Bordeaux",    hex: "#880e4f" },
-  { id: "blanc",       name: "Blanc",       hex: "#ffffff" },
-  { id: "noir",        name: "Noir",        hex: "#212121" },
-  { id: "pink_clair",  name: "Pink Clair",  hex: "#ffd6e0" },
-  { id: "pink_fonce",  name: "Pink Foncé",  hex: "#f06292" },
-  { id: "jaune_matt",  name: "Jaune Matt",  hex: "#fff176" },
-  { id: "pink_matt",   name: "Pink Matt",   hex: "#f48fb1" },
-  { id: "blanc_matt",  name: "Blanc Matt",  hex: "#fafafa" },
-];
-
 // Ribbon types — Ruban Perles now has +80 DA cost
 const RIBBON_TYPES = [
   { id: "moyen",  name: "Ruban Normal", nameAr: "شريط عادي",  extraCost: 0  },
@@ -155,7 +126,6 @@ const LAMP_MODELS = [
 
 // Board configs — renamed as requested
 const BOARD_CONFIGS = [
-  { id: "small", name: "Small Board",  nameAr: "لوحة صغيرة",  basePrice: 800,  numDaisies: 6,  desc: "6 marguerites · 6 couleurs" },
   { id: "moyen", name: "Moyen Board",  nameAr: "لوحة متوسطة", basePrice: 1500, numDaisies: 12, desc: "12 marguerites · 12 couleurs" },
 ];
 
@@ -1433,9 +1403,9 @@ function buildWhatsAppMessage(productType, config, totalPrice) {
   const fmtDA = (n) => `${n.toLocaleString()} DA`;
 
   const productLabels = {
-    bouquet:  "Bouquet 💐",
+    bouquet:  "Bouquets 💐",
     box:      "Flower Box 🎁",
-    lamp:     "Lampe 🌸",
+    lamp:     "Lamps 💮",
     board:    "Dancing Flowers 🌸",
   };
 

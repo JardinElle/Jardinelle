@@ -145,7 +145,7 @@ const LAMP_MODELS = [
   { id: "rose",      name: "Rose",            nameAr: "وردة",       price: 3500, emoji: "🌹" },
   { id: "tulip",     name: "Tulip",           nameAr: "توليب",      price: 3300, emoji: "🌷" },
   { id: "lily_valley", name: "Lily of the Valley", nameAr: "زنبق الوادي", price: 3500, emoji: "🤍" },
-  { id: "perla",     name: "Perla",           nameAr: "بيرلا",      price: 3800, emoji: "🤍" },
+  { id: "perla",     name: "Perla",           nameAr: "بيرلا",      price: 4500, emoji: "🤍" },
   { id: "peony",     name: "Peony",           nameAr: "فاوانيا",    price: 3500, emoji: "🌸" },
 ];
 
@@ -840,7 +840,7 @@ function Step2_Customize({ productType, config, setConfig }) {
           onClick={() => setConfig(c => ({ ...c, lampSwan: !c.lampSwan }))}>
           {config.lampSwan ? "Retirer le cygne" : "Ajouter un cygne"} · {config.lampModel === "perla" ? "inclus avec Perla" : "+700 DA"}
         </button>
-        <p className="info-box">Le cygne peut être ajouté à une lampe. Il ne peut pas être commandé seul. Pour Perla, il est inclus sans supplément.</p>
+        <p className="info-box">Le cygne ne peut pas être commandé seul.</p>
 
         <label className="field-label" style={{marginTop:16}}>✍️ Ajouter un prénom ou un nom (+300 DA)</label>
         <input className="field-input" type="text" placeholder="Nom à inscrire (optionnel)"
@@ -1267,7 +1267,7 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
 
   if (productType === "lamp") {
     const m = LAMP_MODELS.find(m => m.id === config.lampModel);
-    if (m) lines.push({ label: `${m.emoji} Lampe ${m.name}`, price: m.price });
+    if (m) lines.push({ label: `${m.emoji} Lampe ${m.name}`, price: m.id === "perla" && !config.lampSwan ? m.price - 700 : m.price });
     (config.lampColors || []).forEach(hex => {
       const c = LAMP_COLORS.find(fc => fc.hex === hex);
       if (c) lines.push({ label: `🎨 Couleur · ${c.name}`, price: 0, dot: hex });
@@ -1435,7 +1435,7 @@ function buildWhatsAppMessage(productType, config, totalPrice) {
 
   if (productType === "lamp") {
     const m = LAMP_MODELS.find(m => m.id === config.lampModel);
-    if (m) lines.push(`${m.emoji} Modèle : ${m.name} — ${fmtDA(m.price)}`);
+    if (m) lines.push(`${m.emoji} Modèle : ${m.name} — ${fmtDA(m.id === "perla" && !config.lampSwan ? m.price - 700 : m.price)}`);
     const lampCols = (config.lampColors || []).map(hex => LAMP_COLORS.find(c => c.hex === hex)?.name).filter(Boolean);
     if (lampCols.length) lines.push(`🎨 Couleurs : ${lampCols.join(" · ")}`);
     lines.push("🎁 1 pack de piles offert");
@@ -1733,7 +1733,7 @@ export default function App() {
 
     if (pType === "lamp") {
       const model = LAMP_MODELS.find((m) => m.id === cfg.lampModel);
-      total = model ? model.price : 2800;
+      total = model ? (cfg.lampModel === "perla" && !cfg.lampSwan ? model.price - 700 : model.price) : 2800;
       total += (cfg.extraBatteries || 0) * 100;
       if (cfg.lampSwan && cfg.lampModel !== "perla") total += 700;
       if ((cfg.customName || "").trim()) total += 300;
@@ -2053,7 +2053,7 @@ function buildProductLines(productType, config, totalPrice) {
 
   if (productType === "lamp") {
     const m = LAMP_MODELS.find(m => m.id === config.lampModel);
-    if (m) lines.push(`  ${m.emoji} Modèle : ${m.name} — ${fmtDA(m.price)}`);
+    if (m) lines.push(`  ${m.emoji} Modèle : ${m.name} — ${fmtDA(m.id === "perla" && !config.lampSwan ? m.price - 700 : m.price)}`);
     const lampCols = (config.lampColors || []).map(hex => LAMP_COLORS.find(c => c.hex === hex)?.name).filter(Boolean);
     if (lampCols.length) lines.push(`  🎨 Couleurs : ${lampCols.join(" · ")}`);
     if (config.lampSwan) lines.push(`  🦢 Cygne décoratif — ${config.lampModel === "perla" ? "inclus" : fmtDA(700)}`);

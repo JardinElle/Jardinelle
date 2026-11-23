@@ -708,9 +708,9 @@ function FloralBottom() {
 
 function Step1_ProductType({ onSelect, basket = [], onViewBasket }) {
   const products = [
-    { id: "bouquet",  icon: "💐", name: "Bouquet",         nameAr: "باقة زهور",      desc: "Bouquet pipe-cleaner" },
+    { id: "bouquet",  icon: "💐", name: "Bouquets",         nameAr: "باقة زهور",      desc: "Bouquet pipe-cleaner" },
     { id: "box",      icon: "🎁", name: "Flower Box",      nameAr: "صندوق زهور",     desc: "Composition florale en box" },
-    { id: "lamp",     icon: "🌸", name: "Lampe",           nameAr: "مصباح زهري",     desc: "Lampe décorative florale" },
+    { id: "lamp",     icon: "💮", name: "Lamps",           nameAr: "مصباح زهري",     desc: "Lampe décorative florale" },
     { id: "board",    icon: "🌸", name: "Dancing Flowers", nameAr: "زهور راقصة",     desc: "Tableau décoratif floral" },
   ];
 

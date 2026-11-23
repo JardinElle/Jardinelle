@@ -101,7 +101,7 @@ const FILLERS = [
 // Packaging
 const EMBALLAGE_BOUQUET = [
   { id: "small",  name: "Emballage Small", nameAr: "تغليف صغير",  price: 350, maxFlowers: 4  },
-  { id: "medium", name: "Emballage Moyen", nameAr: "تغليف متوسط", price: 450, maxFlowers: 7  },
+  { id: "medium", name: "Emballage Moyen", nameAr: "تغليف متوسط", price: 450, maxFlowers: 10  },
   { id: "large",  name: "Emballage Grand", nameAr: "تغليف كبير",  price: 700, maxFlowers: 999},
   { id: "tule_perles", name: "Tule & Perles", nameAr: "تول ولؤلؤ", price: 900, maxFlowers: 999},
 ];
@@ -204,7 +204,7 @@ const WILAYAS = [
 const sizeLabel = (n) => {
   if (n === 0) return "";
   if (n < 4)  return "Small";
-  if (n <= 7) return "Medium";
+  if (n <= 10) return "Medium";
   return "Large";
 };
 
@@ -1240,7 +1240,7 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
   const productLabels = {
     bouquet:  "Bouquet 💐",
     box:      "Flower Box 🎁",
-    lamp:     "Lampe 🌸",
+    lamp:     "Lamps 💮 ",
     board:    "Dancing Flowers 🌸",
   };
 

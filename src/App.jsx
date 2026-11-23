@@ -25,7 +25,7 @@ const LAMP_COLORS = [
 // Flowers — each with its own curated color palette (max 3 colors each)
 const FLOWERS = [
   {
-    id: "rose", name: "Rose", nameAr: "وردة", emoji: "🌹", price: 500,
+    id: "rose", name: "Rose", nameAr: "وردة", emoji: "🌹", price: 550,
     colors: [
       { name: "Rouge Passion",  hex: "#c0392b" },
       { name: "Rose Pastel",    hex: "#f48fb1" },
@@ -38,7 +38,7 @@ const FLOWERS = [
     ],
   },
   {
-    id: "lily", name: "Lily", nameAr: "زنبق", emoji: "🌸", price: 450,
+    id: "lily", name: "Lily", nameAr: "زنبق", emoji: "🌸", price: 500,
     colors: [
       { name: "Blanc pur",      hex: "#ffffff" },
       { name: "Rose Pastel",    hex: "#ffd6e0" },
@@ -48,23 +48,17 @@ const FLOWERS = [
       { name: "Violet",         hex: "#ce93d8" },
       { name: "Bleu Ciel",      hex: "#81d4fa" },
       { name: "Fuchsia",        hex: "#f06292" },
-    ],
-  },
-  {
-    id: "tournesol", name: "Tourne Sol", nameAr: "عباد الشمس", emoji: "🌻", price: 450,
-    colors: [
-      { name: "Jaune Vif",      hex: "#f9ca24" },
-      { name: "Jaune Orangé",   hex: "#e8a020" },
-      { name: "Jaune Pâle",     hex: "#fff176" },
-      { name: "Orange",         hex: "#ff7043" },
       { name: "Rouge",          hex: "#c0392b" },
-      { name: "Blanc",          hex: "#ffffff" },
-      { name: "Rose Pastel",    hex: "#f48fb1" },
-      { name: "Fuchsia",        hex: "#e91e8c" },
     ],
   },
   {
-    id: "tulipe", name: "Tulipe", nameAr: "توليب", emoji: "🌷", price: 450,
+    id: "tournesol", name: "Tourne Sol", nameAr: "عباد الشمس", emoji: "🌻", price: 550,
+    colors: [
+      { name: "Jaune",          hex: "#f9ca24" },
+    ],
+  },
+  {
+    id: "tulipe", name: "Tulipe", nameAr: "توليب", emoji: "🌷", price: 500,
     colors: [
       { name: "Rouge Passion",  hex: "#c0392b" },
       { name: "Violet",         hex: "#9b59b6" },
@@ -77,16 +71,10 @@ const FLOWERS = [
     ],
   },
   {
-    id: "lavender", name: "Lavande", nameAr: "لافندر", emoji: "🌿", price: 115,
+    id: "lavender", name: "Lavender", nameAr: "لافندر", emoji: "🌿", price: 150,
     colors: [
       { name: "Mauve Clair",    hex: "#d8b4e2" },
       { name: "Lavande",        hex: "#b39ddb" },
-      { name: "Violet Profond", hex: "#6a0572" },
-      { name: "Bleu Ciel",      hex: "#81d4fa" },
-      { name: "Rose Pastel",    hex: "#ffd6e0" },
-      { name: "Blanc",          hex: "#ffffff" },
-      { name: "Fuchsia",        hex: "#f06292" },
-      { name: "Bleu Nuit",      hex: "#1565c0" },
     ],
   },
   {
@@ -94,12 +82,6 @@ const FLOWERS = [
     colors: [
       { name: "Blanc",          hex: "#ffffff" },
       { name: "Jaune",          hex: "#f9ca24" },
-      { name: "Rose Pastel",    hex: "#ffd6e0" },
-      { name: "Orange",         hex: "#ff7043" },
-      { name: "Violet",         hex: "#ce93d8" },
-      { name: "Bleu Ciel",      hex: "#81d4fa" },
-      { name: "Fuchsia",        hex: "#f06292" },
-      { name: "Rouge",          hex: "#c0392b" },
     ],
   },
 ];
@@ -159,10 +141,12 @@ const RIBBON_TYPES = [
 
 // Lamp models
 const LAMP_MODELS = [
-  { id: "rapunzel",  name: "Rapunzel",   nameAr: "رابونزل",    price: 2800, emoji: "🌟" },
-  { id: "tournesol", name: "Tourne Sol", nameAr: "عباد الشمس", price: 2800, emoji: "🌻" },
-  { id: "lily",      name: "Lily",       nameAr: "زنبق",       price: 2800, emoji: "🌸" },
-  { id: "rose",      name: "Rose",       nameAr: "وردة",       price: 2800, emoji: "🌹" },
+  { id: "tournesol", name: "Tournesol",       nameAr: "عباد الشمس", price: 3500, emoji: "🌻" },
+  { id: "rose",      name: "Rose",            nameAr: "وردة",       price: 3500, emoji: "🌹" },
+  { id: "tulip",     name: "Tulip",           nameAr: "توليب",      price: 3300, emoji: "🌷" },
+  { id: "lily_valley", name: "Lily of the Valley", nameAr: "زنبق الوادي", price: 3500, emoji: "🤍" },
+  { id: "perla",     name: "Perla",           nameAr: "بيرلا",      price: 3800, emoji: "🤍" },
+  { id: "peony",     name: "Peony",           nameAr: "فاوانيا",    price: 3500, emoji: "🌸" },
 ];
 
 // Board configs — renamed as requested
@@ -750,12 +734,10 @@ function FloralBottom() {
 
 function Step1_ProductType({ onSelect, basket = [], onViewBasket }) {
   const products = [
-    { id: "bouquet",  icon: "💐", name: "Bouquet",      nameAr: "باقة زهور",      desc: "Bouquet pipe-cleaner personnalisé"   },
-    { id: "box",      icon: "🎁", name: "Flower Box",   nameAr: "صندوق زهور",     desc: "Compositions en box personnalisée"   },
-    { id: "lamp",     icon: "🪔", name: "Lampe",        nameAr: "مصباح زهري",     desc: "Lampe déco florale personnalisée"    },
-    { id: "board",    icon: "🌸", name: "Spring Board", nameAr: "لوحة ربيعية",   desc: "Tableau décoratif personnalisé"      },
-    { id: "pot",      icon: "🪴", name: "Pot",          nameAr: "وعاء زهور",     desc: "Pot fleurs & cœurs personnalisé"     },
-    { id: "keychain", icon: "🗝️", name: "Porte-clé",   nameAr: "حاملة مفاتيح", desc: "Fleurs miniatures personnalisées"    },
+    { id: "bouquet",  icon: "💐", name: "Bouquet",         nameAr: "باقة زهور",      desc: "Bouquet pipe-cleaner" },
+    { id: "box",      icon: "🎁", name: "Flower Box",      nameAr: "صندوق زهور",     desc: "Composition florale en box" },
+    { id: "lamp",     icon: "🪔", name: "Lampe",           nameAr: "مصباح زهري",     desc: "Lampe décorative florale" },
+    { id: "board",    icon: "🌸", name: "Dancing Flowers", nameAr: "زهور راقصة",     desc: "Tableau décoratif floral" },
   ];
 
   return (
@@ -766,10 +748,10 @@ function Step1_ProductType({ onSelect, basket = [], onViewBasket }) {
       <div className="hero-inner">
         <div className="hero-logo">Jardin<span>Elle</span></div>
         <div className="hero-slogan">L'art des fleurs qui ne fanent jamais</div>
-        <div className="hero-tagline">✦ Handmade · Pipe-cleaner · Personnalisé ✦</div>
+        <div className="hero-tagline">✦ Handmade · Pipe-cleaner · Artificial ✦</div>
         <div className="hero-badges">
           <span className="hero-badge">💐 Bouquets</span>
-          <span className="hero-badge sage">🌿 Naturel</span>
+          <span className="hero-badge sage">🌿 Artificial</span>
           <span className="hero-badge lav">✨ Artisanal</span>
         </div>
       </div>
@@ -777,7 +759,7 @@ function Step1_ProductType({ onSelect, basket = [], onViewBasket }) {
       <div className="section-header">
         <div className="section-ornament">✦ ✿ ✦</div>
         <h2>Créez votre <em>création florale</em></h2>
-        <p>Choisissez votre produit et personnalisez chaque détail</p>
+        <p>Choisissez votre produit et composez votre création</p>
       </div>
 
       <div className="product-grid">
@@ -838,7 +820,7 @@ function Step2_Customize({ productType, config, setConfig }) {
     return (
       <div className="step-content">
         <h2 className="step-title">Votre <em>Lampe</em> 🪔</h2>
-        <p className="step-sub">2 800 DA · 1 pack de piles offert 🎁</p>
+        <p className="step-sub">À partir de 3 300 DA · 1 pack de piles offert 🎁</p>
 
         <label className="field-label">Modèle de lampe</label>
         <div className="lamp-grid">
@@ -852,6 +834,18 @@ function Step2_Customize({ productType, config, setConfig }) {
             </button>
           ))}
         </div>
+
+        <label className="field-label" style={{marginTop:18}}>🦢 Option cygne</label>
+        <button className={`option-chip${config.lampSwan ? " selected" : ""}`}
+          onClick={() => setConfig(c => ({ ...c, lampSwan: !c.lampSwan }))}>
+          {config.lampSwan ? "Retirer le cygne" : "Ajouter un cygne"} · {config.lampModel === "perla" ? "inclus avec Perla" : "+700 DA"}
+        </button>
+        <p className="info-box">Le cygne peut être ajouté à une lampe. Il ne peut pas être commandé seul. Pour Perla, il est inclus sans supplément.</p>
+
+        <label className="field-label" style={{marginTop:16}}>✍️ Ajouter un prénom ou un nom (+300 DA)</label>
+        <input className="field-input" type="text" placeholder="Nom à inscrire (optionnel)"
+          value={config.customName || ""}
+          onChange={e => setConfig(c => ({ ...c, customName: e.target.value }))} />
 
         <MultiColorPicker
           label="🎨 Couleurs des fleurs (choisir 2)"
@@ -901,7 +895,7 @@ function Step2_Customize({ productType, config, setConfig }) {
 
     return (
       <div className="step-content">
-        <h2 className="step-title">Votre <em>Spring Board</em> 🌸</h2>
+        <h2 className="step-title">Votre <em>Dancing Flowers</em> 🌸</h2>
         <p className="step-sub">Tableau décoratif floral pipe-cleaner</p>
 
         <label className="field-label">Type de board</label>
@@ -916,12 +910,6 @@ function Step2_Customize({ productType, config, setConfig }) {
             </button>
           ))}
         </div>
-
-        <label className="field-label" style={{marginTop:20}}>✨ LED <small>(optionnel · +500 DA)</small></label>
-        <button className={`option-chip${config.boardLed ? " selected" : ""}`}
-          onClick={() => setConfig(c => ({ ...c, boardLed: !c.boardLed }))}>
-          ✨ Ajouter LED · <span className="chip-price">+500 DA</span>
-        </button>
 
         {selectedBoard && (
           <>
@@ -1050,7 +1038,7 @@ function Step2_Customize({ productType, config, setConfig }) {
   return (
     <div className="step-content">
       <h2 className="step-title">{isBouquet ? "Votre " : "Votre "}<em>{isBouquet ? "Bouquet 💐" : "Flower Box 🎁"}</em></h2>
-      <p className="step-sub">{isBouquet ? "Choisissez vos fleurs, fillers et emballage" : "Composition en box · emballage box 2 000 DA"}</p>
+      <p className="step-sub">{isBouquet ? "Choisissez vos fleurs, fillers et emballage" : "Composition en box · emballage box 750 DA"}</p>
 
       <div className="size-indicator">
         <span className="size-badge large">
@@ -1111,7 +1099,16 @@ function Step2_Customize({ productType, config, setConfig }) {
       )}
 
       {!isBouquet && (
-        <div className="info-box">🎁 Emballage box inclus — <strong>2 000 DA</strong></div>
+        <div className="info-box">🎁 Emballage box inclus — <strong>750 DA</strong></div>
+      )}
+
+      {isBouquet && (
+        <>
+          <label className="field-label" style={{marginTop:18}}>✍️ Ajouter un prénom ou un nom (+300 DA)</label>
+          <input className="field-input" type="text" placeholder="Nom à inscrire (optionnel)"
+            value={config.customName || ""}
+            onChange={e => setConfig(c => ({ ...c, customName: e.target.value }))} />
+        </>
       )}
 
       <label className="field-label">🎀 Type de ruban</label>
@@ -1262,9 +1259,7 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
     bouquet:  "Bouquet 💐",
     box:      "Flower Box 🎁",
     lamp:     "Lampe 🪔",
-    board:    "Spring Board 🌸",
-    pot:      "Pot 🪴",
-    keychain: "Porte-clé 🗝️",
+    board:    "Dancing Flowers 🌸",
   };
 
   const isLight = (h) => ["#ffffff","#fff176","#ffd6e0","#ffcba4","#81d4fa","#d8b4e2","#ce93d8","#fff8e1","#fafafa"].includes(h);
@@ -1278,6 +1273,8 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
       if (c) lines.push({ label: `🎨 Couleur · ${c.name}`, price: 0, dot: hex });
     });
     lines.push({ label: "🎁 Pack de piles offert", price: 0 });
+    if (config.lampSwan) lines.push({ label: "🦢 Cygne décoratif", price: config.lampModel === "perla" ? 0 : 700 });
+    if ((config.customName || "").trim()) lines.push({ label: `✍️ Nom : ${config.customName.trim()}`, price: 300 });
     if ((config.extraBatteries || 0) > 0)
       lines.push({ label: `🔋 Piles supplémentaires ×${config.extraBatteries}`, price: config.extraBatteries * 100 });
   }
@@ -1286,7 +1283,6 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
     const bc = BOARD_CONFIGS.find(b => b.id === config.boardConfig);
     if (bc) {
       lines.push({ label: `🌸 ${bc.name}`, price: bc.basePrice });
-      if (config.boardLed) lines.push({ label: "✨ LED", price: 500 });
       (config.daisyColors || []).forEach((hex, i) => {
         if (hex) {
           const c = LAMP_COLORS.find(fc => fc.hex === hex);
@@ -1296,7 +1292,8 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
     }
   }
 
-  if (productType === "box") lines.push({ label: "🎁 Emballage Box Fleurs", price: 2000 });
+  if (productType === "box") lines.push({ label: "🎁 Emballage Box Fleurs", price: 750 });
+  if (productType === "bouquet" && (config.customName || "").trim()) lines.push({ label: `✍️ Nom : ${config.customName.trim()}`, price: 300 });
 
   if (productType === "pot") {
     lines.push({ label: "🪴 Emballage Pots", price: 500 });
@@ -1318,6 +1315,7 @@ function Step4_Confirm({ productType, config, totalPrice, basket = [], onWhatsAp
     if (fl && qty > 0) lines.push({ label: `${fl.emoji} ${fl.name} ×${qty}`, price: fl.price * qty });
   });
 
+  if (productType === "bouquet" && (config.customName || "").trim()) lines.push({ label: `✍️ Nom : ${config.customName.trim()}`, price: 300 });
   if (productType === "bouquet" && config.emballage) {
     const e = EMBALLAGE_BOUQUET.find(e => e.id === config.emballage);
     if (e) lines.push({ label: `🎀 ${e.name}`, price: e.price });
@@ -1426,9 +1424,7 @@ function buildWhatsAppMessage(productType, config, totalPrice) {
     bouquet:  "Bouquet 💐",
     box:      "Flower Box 🎁",
     lamp:     "Lampe 🪔",
-    board:    "Spring Board 🌸",
-    pot:      "Pot 🪴",
-    keychain: "Porte-clé 🗝️",
+    board:    "Dancing Flowers 🌸",
   };
 
   let lines = [];
@@ -1443,6 +1439,8 @@ function buildWhatsAppMessage(productType, config, totalPrice) {
     const lampCols = (config.lampColors || []).map(hex => LAMP_COLORS.find(c => c.hex === hex)?.name).filter(Boolean);
     if (lampCols.length) lines.push(`🎨 Couleurs : ${lampCols.join(" · ")}`);
     lines.push("🎁 1 pack de piles offert");
+    if (config.lampSwan) lines.push(`🦢 Cygne décoratif — ${config.lampModel === "perla" ? "inclus" : fmtDA(700)}`);
+    if ((config.customName || "").trim()) lines.push(`✍️ Nom à inscrire : ${config.customName.trim()} — ${fmtDA(300)}`);
     if ((config.extraBatteries || 0) > 0)
       lines.push(`🔋 Piles supp. ×${config.extraBatteries} — ${fmtDA(config.extraBatteries * 100)}`);
   }
@@ -1451,7 +1449,6 @@ function buildWhatsAppMessage(productType, config, totalPrice) {
     const bc = BOARD_CONFIGS.find(b => b.id === config.boardConfig);
     if (bc) {
       lines.push(`🌸 ${bc.name} — ${fmtDA(bc.basePrice)}`);
-      if (config.boardLed) lines.push(`✨ LED — ${fmtDA(500)}`);
       (config.daisyColors || []).forEach((hex, i) => {
         if (hex) {
           const c = LAMP_COLORS.find(fc => fc.hex === hex);
@@ -1461,7 +1458,8 @@ function buildWhatsAppMessage(productType, config, totalPrice) {
     }
   }
 
-  if (productType === "box") lines.push(`🎁 Emballage Box — ${fmtDA(2000)}`);
+  if (productType === "box") lines.push(`🎁 Emballage Box — ${fmtDA(750)}`);
+  if (productType === "bouquet" && (config.customName || "").trim()) lines.push(`✍️ Nom à inscrire : ${config.customName.trim()} — ${fmtDA(300)}`);
 
   if (productType === "pot") {
     lines.push(`🪴 Emballage Pot — ${fmtDA(500)}`);
@@ -1582,12 +1580,13 @@ function BasketItemDetail({ item }) {
     if (m) details.push({ text: `${m.emoji} Modèle : ${m.name}` });
     const cols = (config.lampColors || []).map(h => LAMP_COLORS.find(c => c.hex === h)?.name).filter(Boolean);
     if (cols.length) details.push({ text: `🎨 Couleurs : ${cols.join(" · ")}` });
+    if (config.lampSwan) details.push({ text: `🦢 Cygne décoratif${config.lampModel === "perla" ? " (inclus)" : " (+700 DA)"}` });
+    if ((config.customName || "").trim()) details.push({ text: `✍️ Nom : ${config.customName.trim()} (+300 DA)` });
     if ((config.extraBatteries || 0) > 0) details.push({ text: `🔋 +${config.extraBatteries} pack(s) piles` });
   }
   if (productType === "board") {
     const bc = BOARD_CONFIGS.find(b => b.id === config.boardConfig);
     if (bc) details.push({ text: `🌸 ${bc.name}` });
-    if (config.boardLed) details.push({ text: "✨ LED incluse" });
   }
   if (productType === "pot") {
     if (config.potType) details.push({ text: `🪴 Type : ${config.potType}` });
@@ -1610,6 +1609,7 @@ function BasketItemDetail({ item }) {
     if (fl) details.push({ text: `${fl.emoji} ${fl.name} ×${qty}` });
   });
 
+  if (productType === "bouquet" && (config.customName || "").trim()) details.push({ text: `✍️ Nom : ${config.customName.trim()} (+300 DA)` });
   if (productType === "bouquet" && config.emballage) {
     const e = EMBALLAGE_BOUQUET.find(e => e.id === config.emballage);
     if (e) details.push({ text: `🎀 Emballage : ${e.name} (${fmtPrice(e.price)})` });
@@ -1735,16 +1735,18 @@ export default function App() {
       const model = LAMP_MODELS.find((m) => m.id === cfg.lampModel);
       total = model ? model.price : 2800;
       total += (cfg.extraBatteries || 0) * 100;
+      if (cfg.lampSwan && cfg.lampModel !== "perla") total += 700;
+      if ((cfg.customName || "").trim()) total += 300;
     }
 
     if (pType === "board") {
       const bc = BOARD_CONFIGS.find((b) => b.id === cfg.boardConfig);
       total = bc?.basePrice || 0;
-      if (cfg.boardLed) total += 500;
     }
 
     if (pType === "pot") total += 500;
-    if (pType === "box") total += 2000;
+    if (pType === "box") total += 750;
+    if (pType === "bouquet" && (cfg.customName || "").trim()) total += 300;
 
     // flowerVariants: [{flowerID, colorHex, qty}]
     (cfg.flowerVariants || []).forEach(({ flowerID, qty }) => {
@@ -1782,7 +1784,7 @@ export default function App() {
 
   const PRODUCT_LABELS = {
     bouquet:"Bouquet 💐", box:"Flower Box 🎁", lamp:"Lampe 🪔",
-    board:"Spring Board 🌸", pot:"Pot 🪴", keychain:"Porte-clé 🗝️",
+    board:"Dancing Flowers 🌸",
   };
 
   const handleNext = () => setStep((s) => Math.min(s + 1, STEPS));
@@ -2054,6 +2056,8 @@ function buildProductLines(productType, config, totalPrice) {
     if (m) lines.push(`  ${m.emoji} Modèle : ${m.name} — ${fmtDA(m.price)}`);
     const lampCols = (config.lampColors || []).map(hex => LAMP_COLORS.find(c => c.hex === hex)?.name).filter(Boolean);
     if (lampCols.length) lines.push(`  🎨 Couleurs : ${lampCols.join(" · ")}`);
+    if (config.lampSwan) lines.push(`  🦢 Cygne décoratif — ${config.lampModel === "perla" ? "inclus" : fmtDA(700)}`);
+    if ((config.customName || "").trim()) lines.push(`  ✍️ Nom : ${config.customName.trim()} — ${fmtDA(300)}`);
     if ((config.extraBatteries || 0) > 0) lines.push(`  🔋 Piles supp. ×${config.extraBatteries} — ${fmtDA(config.extraBatteries * 100)}`);
   }
 
@@ -2061,11 +2065,11 @@ function buildProductLines(productType, config, totalPrice) {
     const bc = BOARD_CONFIGS.find(b => b.id === config.boardConfig);
     if (bc) {
       lines.push(`  🌸 ${bc.name} — ${fmtDA(bc.basePrice)}`);
-      if (config.boardLed) lines.push(`  ✨ LED — ${fmtDA(500)}`);
     }
   }
 
-  if (productType === "box") lines.push(`  🎁 Emballage Box — ${fmtDA(2000)}`);
+  if (productType === "box") lines.push(`  🎁 Emballage Box — ${fmtDA(750)}`);
+  if (productType === "bouquet" && (config.customName || "").trim()) lines.push(`  ✍️ Nom : ${config.customName.trim()} — ${fmtDA(300)}`);
 
   if (productType === "pot") {
     lines.push(`  🪴 Emballage Pot — ${fmtDA(500)}`);
